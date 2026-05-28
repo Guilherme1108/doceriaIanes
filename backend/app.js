@@ -1,6 +1,6 @@
 /****************************************************************************************
  * Objetivo: Arquivo responsavel pelas requisições da API da Doceria Gourmet Ianes
- * Data: 026/06/2026
+ * Data: 26/06/2026
  * Autor: Guilherme Moreira
  * Versão: 1.0
 *****************************************************************************************/
@@ -24,11 +24,11 @@ app.use((request, response, next) => {
 
 // Importando rotas
 const usuarioRoutes = require('./routes/usuario/router_usuario.js')
-const usuarioRoutes = require('./routes/produto/router_produto.js')
+const produtoRoutes = require('./routes/produto/router_produto.js')
 
 
 // Usando rotas
-app.use(filmeRoutes)
+app.use(usuarioRoutes)
 
 
 app.listen(PORT, function(){
