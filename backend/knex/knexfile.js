@@ -12,7 +12,7 @@ module.exports = {
       user: 'root',
       password: 'bcd127',
       database: 'db_doceria_gourmet_ianes',
-      port: 8080
+      port: 3306
     }
   },
 

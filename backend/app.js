@@ -25,12 +25,15 @@ app.use((request, response, next) => {
 // Importando rotas
 const usuarioRoutes = require('./routes/usuario/router_usuario.js')
 const produtoRoutes = require('./routes/produto/router_produto.js')
+const descarteRoutes = require('./routes/descarte/router_descarte.js')
 
 
 // Usando rotas
 app.use(usuarioRoutes)
+app.use(produtoRoutes)
+app.use(descarteRoutes)
 
 
 app.listen(PORT, function(){
-    console.log('API Aguardando Requisições🏎️')
+    console.log(`API Aguardando Requisições na porta ${PORT}`)
 })
