@@ -1,39 +1,27 @@
-/****************************************************************************************
- * Objetivo: Arquivo responsavel pelas requisições da API da Doceria Gourmet Ianes
- * Data: 26/06/2026
- * Autor: Guilherme Moreira
- * Versão: 1.0
-*****************************************************************************************/
+const express = require('express');
+const cors = require('cors');
 
-const express       = require('express')
-const cors          = require('cors')
+const app = express();
 
-const app = express()
+const PORT = process.env.PORT || 8080;
 
-//porta
-const PORT = process.PORT || 8080
+app.use(cors({
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type']
+}));
 
-//permissões
-app.use((request, response, next) => {
-    response.header('Access-Control-Allow-Origin', '*')
-    response.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
+app.use(express.json());
 
-    app.use(cors())
-    next()
-})
+// Rotas
+const usuarioRoutes = require('./routes/usuario/router_usuario.js');
+const produtoRoutes = require('./routes/produto/router_produto.js');
+const descarteRoutes = require('./routes/descarte/router_descarte.js');
 
-// Importando rotas
-const usuarioRoutes = require('./routes/usuario/router_usuario.js')
-const produtoRoutes = require('./routes/produto/router_produto.js')
-const descarteRoutes = require('./routes/descarte/router_descarte.js')
+app.use(usuarioRoutes);
+app.use(produtoRoutes);
+app.use(descarteRoutes);
 
-
-// Usando rotas
-app.use(usuarioRoutes)
-app.use(produtoRoutes)
-app.use(descarteRoutes)
-
-
-app.listen(PORT, function(){
-    console.log(`API Aguardando Requisições na porta ${PORT}`)
-})
+app.listen(PORT, () => {
+    console.log(`API Aguardando Requisições na porta ${PORT}`);
+});
